@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Add Custodian</title>
+    <link rel="stylesheet" href="updatefund.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body> 
+    <div class="sidebar">
+        <ul class="menu">
+            <li>
+                <a href="dashboard.html">
+                    <i class="fas fa-home"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="view-transaction.html">
+                     <i class="fas fa-file"></i>
+                     <span>View Transaction</span>
+                </a> 
+             </li>
+             <li>
+                <a href="add-custodian.html">
+                     <i class="fas fa-user-plus"></i>
+                     <span>Add Custodian</span>
+                </a> 
+             </li>
+             <li>
+                <a href="update-fund.html">
+                     <i class="fas fa-money-bill-wave"></i>
+                     <span>Update Fund</span>
+                </a> 
+             </li>
+             <li class="logout">
+                <a href="logout.html">
+                     <i class="fas fa-sign-out-alt"></i>
+                     <span>Logout</span>
+                </a> 
+             </li>
+        </ul>
+    </div>
+
+     <div class="main">
+        <div class="topbar">
+            <div class="toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="title">
+                <span>Petty Cash System</span>
+            </div>
+            <div class="admin">
+                <span>Admin</span>
+            </div>
+        </div>
+
+        <div class="update-fund-container">
+            <!-- <h2>Update Fund</h2> -->
+            <div class="form-group">
+                <label for="custodian">Custodian:</label>
+                <select id="custodian" name="custodian">
+                    <option value="CUS-1001">Custodian 1</option>
+                    <option value="CUS-1002">Custodian 2</option>
+                    <option value="CUS-1003">Custodian 3</option>
+                </select>
+            </div>
+        
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" value="John Doe" readonly>
+            </div>
+        
+            <div class="form-group">
+                <label for="current-fund">Current Cash Fund:</label>
+                <input type="text" id="current-fund" name="current-fund" value="₱ 5000.00" readonly>
+            </div>
+        
+            <div class="form-group">
+                <label for="new-fund">New Cash Fund: ₱</label>
+                <input type="text" id="new-fund" name="new-fund" placeholder="Enter new cash fund">
+            </div>
+        
+            <button id="update-fund-btn">Update Cash Fund</button>
+        </div>
+        
+    </div>
+
+    <script>
+        let toggle = document.querySelector('.toggle');
+        let sidebar = document.querySelector('.sidebar');
+        let main = document.querySelector('.main');
+
+        if (localStorage.getItem('sidebarActive') === 'true') {
+            sidebar.classList.add('active');
+            main.classList.add('active');
+        }
+
+        toggle.onclick = function () {
+            sidebar.classList.toggle('active');
+            main.classList.toggle('active');
+
+            localStorage.setItem('sidebarActive', sidebar.classList.contains('active'));
+        };
+
+    const currentLocation = window.location.pathname;
+    const menuItems = document.querySelectorAll('.sidebar .menu li a');
+
+    menuItems.forEach(item => {
+        if (item.getAttribute('href') === currentLocation.split('/').pop()) {
+            item.parentElement.classList.add('active');
+        }
+    });
+    </script>
+</body>
+</html>
